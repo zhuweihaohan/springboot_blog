@@ -1,4 +1,4 @@
-/*Í¨ÓÃcssÑùÊ½*/
+/*é€šç”¨cssæ ·å¼*/
 body {margin: 0 auto;background-color: #eeeeee;}
 ul {list-style: none;padding: 0;margin: 0;}
 a {text-decoration: none}
@@ -8,7 +8,7 @@ a {text-decoration: none}
     clear: both;
 }
 
-/*²©¿Í×ó²¿·Ö*/
+/*åšå®¢å·¦éƒ¨åˆ†*/
 #blog-left {
     float: left;
     position: fixed;
@@ -17,7 +17,7 @@ a {text-decoration: none}
     background-color: #4e4e4e;
     color: darkgray;
 }
-/*Í·Ïñ*/
+/*å¤´åƒ*/
 #blog-left #avatar {
     width: 180px;
     height: 180px;
@@ -31,14 +31,14 @@ a {text-decoration: none}
     max-width: 100%;
 }
 
-/*¼ò½é*/
+/*ç®€ä»‹*/
 #introduce li {
     text-align: center;
     font-size: 15px;
     margin: 10px 0;
 }
 
-/*ÁªÏµ·½Ê½*/
+/*è”ç³»æ–¹å¼*/
 #callme {
     margin: 50px auto;
 }
@@ -56,7 +56,7 @@ a {text-decoration: none}
     left: 20px;
 }
 
-/*¼¼ÄÜ*/
+/*æŠ€èƒ½*/
 #skills {
     text-align: center;
     font-size: 20px;
@@ -66,13 +66,13 @@ a {text-decoration: none}
     margin: 10px auto;
 }
 
-/*Ï²ºÃ*/
+/*å–œå¥½*/
 #like {
     text-align: center;
     font-size: 16px;
 }
 
-/*µ×²¿°æÈ¨ĞÅÏ¢*/
+/*åº•éƒ¨ç‰ˆæƒä¿¡æ¯*/
 #footer {
     font-size: 12px;
     position: fixed;
@@ -80,7 +80,7 @@ a {text-decoration: none}
     left: 25px;
 }
 
-/*²©¿ÍÓÒ²¿·Ö*/
+/*åšå®¢å³éƒ¨åˆ†*/
 #blog-right {
     float: right;
     width: 80%;
@@ -88,14 +88,14 @@ a {text-decoration: none}
     color: rgba(0,0,0,0.6);
 }
 
-/*ÓÒ±ß²©¿ÍÑùÊ½*/
+/*å³è¾¹åšå®¢æ ·å¼*/
 .content {
     margin: 15px 20px 40px 10px;
     background-color: #ececec;
     box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
     border-radius: 5px;
 }
-/*²©¿ÍÍ·²¿ÑùÊ½*/
+/*åšå®¢å¤´éƒ¨æ ·å¼*/
 .content .content-top {
     text-indent: 1em;
     border-left: 5px solid lightskyblue;
@@ -115,20 +115,20 @@ a {text-decoration: none}
     float: right;
     margin: 18px 18px 0 0;
 }
-/*²©¿ÍÄÚÈİÑùÊ½*/
+/*åšå®¢å†…å®¹æ ·å¼*/
 .content .content-info>span {
     margin-right: 36px;
     font-size: 18px;
     padding-left: 24px;
 }
 
-/*²©¿ÍÎ²²¿ÑùÊ½*/
+/*åšå®¢å°¾éƒ¨æ ·å¼*/
 .content .author {
     float: right;
     margin: 0 18px 10px 0;
 }
 
-/*topĞ¡»ğ¼ı*/
+/*topå°ç«ç®­*/
 #blog-right #top_rocket {
     position: fixed;
     bottom: 20px;

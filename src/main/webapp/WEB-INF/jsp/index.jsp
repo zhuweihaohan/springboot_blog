@@ -60,7 +60,7 @@
 									</li>
 								</c:forEach>
 										<ul>	
-										</div>
+										</ul>
 									</div>
 								</div>
 							</div>
