@@ -1,0 +1,43 @@
+
+					#left{float:left;
+				font-size:white;
+					width:10%;
+					height:100%;
+					
+					position : relative ;}
+					#article{
+					float:left;
+					
+					width:65%;
+					background:#E0F8F7;
+				/* background:#D8D8D8; *//* url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595840633264&di=f5c22c59de95d2c9bfc0d0d574b0f58a&imgtype=0&src=http%3A%2F%2Fwww.waibao123.com%2FUploads%2Fphoto%2F2014-07-04%2F4b9180ad9c55d749666ee7bbca482ab0_big.png"); */
+					}
+					#aandr{
+					float:left;
+				
+					width:10%;
+					height:100%;
+					
+					position : relative ;
+					}
+					#title{
+					height:5%;
+					background:url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3385125687,2419799288&fm=26&gp=0.jpg");
+					width:100%;
+					}
+					p{color:green;
+					font-size:20px;}
+					#right{
+					float:left;
+					width:15%;
+					height:100%;
+				background-color:#C7C7E2;
+					position : relative ;
+				
+					}
+					table{width:80%;
+					}
+					td{
+border:none;
+}
+			

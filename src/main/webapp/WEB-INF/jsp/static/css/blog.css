@@ -1,0 +1,141 @@
+/*通用css样式*/
+body {margin: 0 auto;background-color: #eeeeee;}
+ul {list-style: none;padding: 0;margin: 0;}
+a {text-decoration: none}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*博客左部分*/
+#blog-left {
+    float: left;
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    background-color: #4e4e4e;
+    color: darkgray;
+}
+/*头像*/
+#blog-left #avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background-color: #b0b0b0;
+    margin: 20px auto;
+    overflow: hidden;
+}
+#blog-left #avatar>img {
+    max-width: 100%;
+}
+
+/*简介*/
+#introduce li {
+    text-align: center;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+/*联系方式*/
+#callme {
+    margin: 50px auto;
+}
+#callme li {
+    margin: 6px auto;
+    text-align: center;
+    font-size: 24px;
+}
+#callme li>a {
+    color: darkgray;
+}
+#callme li>a:hover {
+    position: relative;
+    color: white;
+    left: 20px;
+}
+
+/*技能*/
+#skills {
+    text-align: center;
+    font-size: 20px;
+    margin: 70px auto;
+}
+#skills li {
+    margin: 10px auto;
+}
+
+/*喜好*/
+#like {
+    text-align: center;
+    font-size: 16px;
+}
+
+/*底部版权信息*/
+#footer {
+    font-size: 12px;
+    position: fixed;
+    bottom: 10px;
+    left: 25px;
+}
+
+/*博客右部分*/
+#blog-right {
+    float: right;
+    width: 80%;
+    height: 100%;
+    color: rgba(0,0,0,0.6);
+}
+
+/*右边博客样式*/
+.content {
+    margin: 15px 20px 40px 10px;
+    background-color: #ececec;
+    box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
+    border-radius: 5px;
+}
+/*博客头部样式*/
+.content .content-top {
+    text-indent: 1em;
+    border-left: 5px solid lightskyblue;
+    margin-bottom: 15px;
+}
+.content-top .title {
+    font-size: 36px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.5);
+}
+.content-top .title:hover {
+    color: lightskyblue;
+    position: relative;
+    left: 20px;
+}
+.content-top .date {
+    float: right;
+    margin: 18px 18px 0 0;
+}
+/*博客内容样式*/
+.content .content-info>span {
+    margin-right: 36px;
+    font-size: 18px;
+    padding-left: 24px;
+}
+
+/*博客尾部样式*/
+.content .author {
+    float: right;
+    margin: 0 18px 10px 0;
+}
+
+/*top小火箭*/
+#blog-right #top_rocket {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /*background: url("rocket.png") no-repeat;*/
+}
+#blog-right #top_rocket img {
+    width: 70px;
+    opacity: 0.5;
+}

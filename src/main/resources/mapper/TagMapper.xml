@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+				<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+				<mapper namespace="com.lhd.springboot_blog.mapper.TagMapper">
+					
+					<!-- 查询所有的标签列表 -->
+					<select id="listTag" resultType="com.lhd.springboot_blog.entity.Tag">
+						select * from Tag 
+					</select>
+					<!-- 根据名字查询标签列表 -->
+					<select id="getTagByName" resultType="com.lhd.springboot_blog.entity.Tag">
+						select * from tag where tag_name=#{tagName}
+					</select>
+					<insert id="addTag">
+					insert into tag (tag_name,tag_description) values(#{tagName},#{tagDescription})
+					</insert>
+					<select id="getArticlenumberById" resultType="Integer">
+					SELECT COUNT(*) FROM article_tag_ref WHERE tag_id=#{tagId}
+					</select>
+					<update id="update">
+					update tag set tag_name=#{tagName},tag_description=#{tagDescription} where tag_id=#{tagId}</update>
+					<delete id="deleteById">
+					delete from tag where tag_id=#{id}</delete>
+					<select id="listTagByArticleId" resultType="com.lhd.springboot_blog.entity.Tag">
+					
+				 select * from tag where tag_id in(  select tag_id from article_tag_ref where article_id=#{articleId}) 
+					</select>
+					<select id="getCount" resultType="Integer">
+					
+				 select count(*) from tag
+					</select>
+				</mapper>
