@@ -55,7 +55,7 @@
     
             <td>
                  <img src="${u.userAvatar}" width="48" height="48">
-                 <strong><a href="/admin/user/edit/${u.userId}">${u.userName}</a></strong>
+
             </td>
             <td>
                 ${u.userNickname}

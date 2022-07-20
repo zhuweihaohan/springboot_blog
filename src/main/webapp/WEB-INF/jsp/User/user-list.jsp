@@ -34,8 +34,7 @@
 						<c:forEach  var="u" items="${userList}">
 							<tr>
 								<td>
-									<img src="admin/photo/${u.userId}" width="48" height="48"> 
-									 <strong><a href="admin/edit/${u.userId}">${u.userName}</a></strong>
+									<img src="${u.userAvatar}" width="48" height="48">
 								</td>
 								<td>${u.userNickname}</td>
 								<td>${u.userEmail}</td>

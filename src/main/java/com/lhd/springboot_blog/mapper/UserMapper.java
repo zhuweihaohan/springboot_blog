@@ -23,11 +23,11 @@ public interface UserMapper {
 
 	@Insert("insert into   user (user_id,user_name,user_pass,user_nickname,user_email,user_url,"
 			+"user_avatar,user_last_login_ip,user_register_time," +
-			"user_last_login_time, user_status,user_photo)" +
+			"user_last_login_time, user_status)" +
 			" values (#{userId}, #{userName}, #{userPass}," +
 			"#{userNickname}, #{userEmail}, #{userUrl}," +
 			"#{userAvatar}, #{userLastLoginIp}, #{userRegisterTime}," +
-			"#{userLastLoginTime}, #{userStatus},#{userPhoto})")
+			"#{userLastLoginTime}, #{userStatus})")
 	void addUser(User user);
 	@Select("select * from user")
 	List<User> listUser();

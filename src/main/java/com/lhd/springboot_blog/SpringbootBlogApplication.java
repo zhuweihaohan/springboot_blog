@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication()
 @MapperScan("com.lhd.springboot_blog.mapper")
-@EnableTransactionManagement()
+@EnableTransactionManagement
 public class SpringbootBlogApplication {
 
     public static void main(String[] args) {

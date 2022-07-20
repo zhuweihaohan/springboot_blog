@@ -4,6 +4,7 @@ import com.lhd.springboot_blog.entity.Article;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 public interface ArticleMapper {
 	/**
 	 * 添加文章信息
@@ -102,6 +103,10 @@ int getArticleSum();
 
 @Update("update article set article_like_count=article_like_count+1 where article_id=#{id}")
 void addlike(Integer id);
-
-
+@Insert("insert into article_img_ref (article_id,img_url,img_path,create_time) values(#{articleId},#{path},#{img_path},now())")
+	void addArticleImgRef(String path, int articleId, String img_path);
+@Delete("delete from article_img_ref where img_url =#{img_url} and article_id=#{articleId} and img_path =#{img_path} ")
+    void deleteArticleImgRef(String img_url, int articleId, String img_path);
+	@Select("select * from article where article_status =1 order  by article_order DESC, article_id DESC")
+    List<Article> getPageArticleBlogList();
 }

@@ -65,48 +65,48 @@
 								</div>
 							</div>
 						</div>
-						<div class="layui-col-md6">
-							<div id="dashboard_quick_press" class="postbox ">
-								<div class="inside">
-									<form name="post" method="post" id="insertDraftForm"
-										class="initial-form hide-if-no-js"
-										action="article/insertc">
-				
-										<div class="layui-form-item">
-											<div class="layui-input-block">
-												<input type="text" name="articleTitle" id="articleTitle"
-													required lay-verify="required" placeholder="请输入标题"
-													autocomplete="off" class="layui-input">
-											</div>
-										</div>
-										<div class="layui-form-item layui-form-text">
-											<div class="layui-input-block">
-												<textarea name="articleContent" placeholder="请输入内容"
-													id="articleContent" class="layui-textarea" required></textarea>
-											</div>
-										</div>
-										<input type="hidden" name="articleStatus" value="0">
-										<div class="layui-form-item">
-											<div class="layui-input-block">
-												<button class="layui-btn layui-btn-small" lay-submit
-													lay-filter="formDemo" onclick="insertDraft()">保存草稿</button>
-												<button type="reset"
-													class="layui-btn layui-btn-small layui-btn-primary">重置</button>
-											</div>
-										</div>
-				
-									</form>
-									<div class="drafts">
-										<p class="view-all">
-											<a href="article" aria-label="查看所有草稿">查看所有</a>
-										</p>
-										<h2 class="hide-if-no-js">草稿</h2>
-										<ul>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+<%--						<div class="layui-col-md6">--%>
+<%--							<div id="dashboard_quick_press" class="postbox ">--%>
+<%--								<div class="inside">--%>
+<%--									<form name="post" method="post" id="insertDraftForm"--%>
+<%--										class="initial-form hide-if-no-js"--%>
+<%--										action="article/insertc">--%>
+<%--				--%>
+<%--										<div class="layui-form-item">--%>
+<%--											<div class="layui-input-block">--%>
+<%--												<input type="text" name="articleTitle" id="articleTitle"--%>
+<%--													required lay-verify="required" placeholder="请输入标题"--%>
+<%--													autocomplete="off" class="layui-input">--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--										<div class="layui-form-item layui-form-text">--%>
+<%--											<div class="layui-input-block">--%>
+<%--												<textarea name="articleContent" placeholder="请输入内容"--%>
+<%--													id="articleContent" class="layui-textarea" required></textarea>--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--										<input type="hidden" name="articleStatus" value="0">--%>
+<%--										<div class="layui-form-item">--%>
+<%--											<div class="layui-input-block">--%>
+<%--												<button class="layui-btn layui-btn-small" lay-submit--%>
+<%--													lay-filter="formDemo" onclick="insertDraft()">保存草稿</button>--%>
+<%--												<button type="reset"--%>
+<%--													class="layui-btn layui-btn-small layui-btn-primary">重置</button>--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--				--%>
+<%--									</form>--%>
+<%--									<div class="drafts">--%>
+<%--										<p class="view-all">--%>
+<%--											<a href="article" aria-label="查看所有草稿">查看所有</a>--%>
+<%--										</p>--%>
+<%--										<h2 class="hide-if-no-js">草稿</h2>--%>
+<%--										<ul>--%>
+<%--										</ul>--%>
+<%--									</div>--%>
+<%--								</div>--%>
+<%--							</div>--%>
+<%--						</div>--%>
 					</div>
 				</div>
 				</rapid:override>

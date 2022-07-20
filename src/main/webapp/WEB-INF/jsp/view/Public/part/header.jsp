@@ -8,35 +8,35 @@
 <%--导航 start--%>
 <header id="masthead" class="site-header">
     <%--顶部菜单 start--%>
-    <nav id="top-header">
-        <div class="top-nav">
-            <div class="user-login">
-                <c:choose>
-                    <c:when test="${session.user==null}">
-                        <a href="/admin">进入后台</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/admin">进入后台</a>
-                    </c:otherwise>
-                </c:choose>
-                <a href="https://liuyanzhao.com/bulletin/my-service" target="_blank" style="color:red;"></a>
-            </div>
-            <div class="menu-topmenu-container">
-                <ul id="menu-topmenu" class="top-menu">
-                    <c:forEach items="${menuList}" var="m">
-                        <li class="menu-item">
-                        <c:if test="${m.menuLevel==1}">
-                                <a href="${m.menuUrl}" >
-                                    <i class="${m.menuIcon}"></i>
-                                    <span class="font-text">${m.menuName}&nbsp;</span>&nbsp;
-                                </a>
-                            </c:if>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-    </nav><!-- #top-header -->
+<%--    <nav id="top-header">--%>
+<%--        <div class="top-nav">--%>
+<%--            <div class="user-login">--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${session.user==null}">--%>
+<%--                        <a href="/admin">进入后台</a>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <a href="/admin">进入后台</a>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+<%--                <a href="https://liuyanzhao.com/bulletin/my-service" target="_blank" style="color:red;"></a>--%>
+<%--            </div>--%>
+<%--            <div class="menu-topmenu-container">--%>
+<%--                <ul id="menu-topmenu" class="top-menu">--%>
+<%--                    <c:forEach items="${menuList}" var="m">--%>
+<%--                        <li class="menu-item">--%>
+<%--                        <c:if test="${m.menuLevel==1}">--%>
+<%--                                <a href="${m.menuUrl}" >--%>
+<%--                                    <i class="${m.menuIcon}"></i>--%>
+<%--                                    <span class="font-text">${m.menuName}&nbsp;</span>&nbsp;--%>
+<%--                                </a>--%>
+<%--                            </c:if>--%>
+<%--                        </li>--%>
+<%--                    </c:forEach>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </nav><!-- #top-header -->--%>
     <%--顶部菜单 end--%>
 
     <%--主要菜单 satrt--%>

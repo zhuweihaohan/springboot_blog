@@ -4,6 +4,7 @@ import com.lhd.springboot_blog.entity.Tag;
 import com.lhd.springboot_blog.mapper.TagMapper;
 import com.lhd.springboot_blog.service.TagService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,9 +25,9 @@ public class TagServiceImpl implements TagService{
 	}
 
 	//添加标签
+	@Transactional
 	public void addTag(Tag tag) {
 		tagMapper.addTag(tag);
-
 	}
 
 	/**

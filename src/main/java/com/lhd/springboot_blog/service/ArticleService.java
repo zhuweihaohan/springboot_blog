@@ -2,6 +2,7 @@ package com.lhd.springboot_blog.service;
 
 import com.lhd.springboot_blog.entity.Article;
 import com.github.pagehelper.PageInfo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface ArticleService {
 	 * @param article 文章信息
 	 */
 	void addArticle(Article article);
+
+
 	void addArticlec(Article article);
 
 
@@ -45,4 +48,10 @@ public interface ArticleService {
 	int getArticleSum();
 
 	void addlike(Integer id);
+
+	void addArticleImgRef(String path, int articleId, String img_path);
+
+    void deleteArticleImgRef(String img_url, int articleId, String img_path);
+	//带分页的文章列表
+    PageInfo<Article> getPageArticleBlogList(Integer pageIndex, Integer pageSize);
 }

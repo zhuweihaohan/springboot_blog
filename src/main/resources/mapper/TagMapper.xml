@@ -10,7 +10,7 @@
 					<select id="getTagByName" resultType="com.lhd.springboot_blog.entity.Tag">
 						select * from tag where tag_name=#{tagName}
 					</select>
-					<insert id="addTag">
+					<insert id="addTag" parameterType="com.lhd.springboot_blog.entity.Tag" useGeneratedKeys="true" keyProperty="tagId" keyColumn="tag_id">
 					insert into tag (tag_name,tag_description) values(#{tagName},#{tagDescription})
 					</insert>
 					<select id="getArticlenumberById" resultType="Integer">

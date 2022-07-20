@@ -47,11 +47,12 @@
 									<div class="layui-form-mid layui-word-aux"></div>
 								</div>
 								<div class="layui-form-item">
-									<label class="layui-form-label">Email <span style="color: #FF5722;">*</span></label>		
+									<label class="layui-form-label">Email </label>
 									<div class="layui-input-inline">
-										<input type="email" name="userEmail" id="userEmail" required 	lay-verify="userEmail" class="layui-input" 	onblur="checkUserEmail()">
+										<input type="email" name="userEmail"  class="layui-input">
+<%--										<input type="email" name="userEmail" id="userEmail" required 	lay-verify="userEmail" class="layui-input" 	onblur="checkUserEmail()">--%>
 									</div>
-									<div class="layui-form-mid layui-word-aux" id="userEmailTips"></div>
+<%--									<div class="layui-form-mid layui-word-aux" id="userEmailTips"></div>--%>
 								</div>
 								<div class="layui-form-item">
 									<label class="layui-form-label">URL </label>

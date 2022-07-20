@@ -1,24 +1,31 @@
 package com.lhd.springboot_blog.controller;
 
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONObject;
 import com.lhd.springboot_blog.entity.*;
 import com.lhd.springboot_blog.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller @RequestMapping("/admin")
 @Slf4j
@@ -33,6 +40,10 @@ public class AdminController {
 	private TagService tagService;
 	@Resource
 	private NoticeService noticeService;
+	@Value("${img_file}")
+	private String img_file;
+	@Value(("${img_url}"))
+	private String img_url;
 	@RequestMapping("/login")
 	public String login(String userName,String userPass,ModelMap m,HttpSession session) {
 		User user=userService.login(userName, userPass);
@@ -89,11 +100,18 @@ public class AdminController {
 
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(User user,MultipartFile photo,ModelMap m,HttpServletResponse response) throws IOException {
+		//生成一个随机的文件名
+		String newName= UUID.randomUUID().toString();
+		File destFile =new File(img_file+newName+".jpg");
+
+		photo.transferTo(destFile);
+
+		String path=img_url+newName+".jpg";
 		User tempuser=userService.getUserByName(user.getUserName());
 		if(tempuser==null)
 		{user.setUserRegisterTime(new Date());
 			user.setUserStatus(1);
-			user.setUserPhoto(photo.getBytes());
+			user.setUserAvatar(path);
 			userService.addUser(user);
 			return "redirect:/admin/user";   }//添加完成以后.转到用望列表
 		else
@@ -106,6 +124,25 @@ public class AdminController {
 		List<User> userList= userService.listUser();
 		m.put("userList",userList);
 		return "User/user-list";
+	}
+	@RequestMapping(value = "/checkUserName",method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject checkUserName(HttpServletRequest request){
+		String userName = request.getParameter("username");
+		User user =userService.getUserByName(userName);
+		if(user==null){
+		JSONObject json=new JSONObject();
+		json.put("code",0);
+		json.put("msg","用户名可用");
+
+		return json;}
+		else {
+			JSONObject json=new JSONObject();
+			json.put("code",1);
+			json.put("msg","用户名已存在");
+
+			return json;
+		}
 	}
 	@RequestMapping(value="/userForOne")
 	public String user(ModelMap m,HttpServletRequest request) {
@@ -121,15 +158,15 @@ public class AdminController {
 			m.put("userList",userList);
 			return "User/user-list";}
 	}
-	@RequestMapping("/photo/{id}")
-	public void showPhoto(@PathVariable("id") Integer id,HttpServletResponse response) throws IOException {
-		User user=userService.getUserById(id);
-
-		response.setContentType("image/jpg");
-		ServletOutputStream outStream=response.getOutputStream();
-		outStream.write(user.getUserPhoto());
-		outStream.flush();
-	}
+//	@RequestMapping("/photo/{id}")
+//	public void showPhoto(@PathVariable("id") Integer id,HttpServletResponse response) throws IOException {
+//		User user=userService.getUserById(id);
+//
+//		response.setContentType("image/jpg");
+//		ServletOutputStream outStream=response.getOutputStream();
+//		outStream.write(user.getUserPhoto());
+//		outStream.flush();
+//	}
 
 	@RequestMapping(value="/addTag")
 	public String addTag(Tag tag,ModelMap m) {

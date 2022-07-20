@@ -4,9 +4,16 @@ import cn.hutool.http.HtmlUtil;
 import com.lhd.springboot_blog.entity.*;
 import com.github.pagehelper.PageInfo;
 import com.lhd.springboot_blog.service.*;
+import com.lhd.springboot_blog.service.impl.ImgService;
+import com.lhd.springboot_blog.utils.DeleteImgFile;
+import com.lhd.springboot_blog.utils.InsertArticleImgRef;
+import com.lhd.springboot_blog.utils.RegexMatches;
+import com.lhd.springboot_blog.utils.ThreadPoolUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,10 +22,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @Controller @RequestMapping("/article")
 @Slf4j
@@ -37,6 +44,8 @@ public class ArticleController {
 	LinkService linkService;
 	@Resource
 	UserService userService;
+	@Autowired
+	ImgService imgService;
 	@Value("${img_file}")
 	private String img_file;
 	@Value(("${img_url}"))
@@ -87,6 +96,7 @@ public class ArticleController {
 		//文章内容
 		article.setArticleContent(request.getParameter("articleContent"));
 
+
 		//文章的状态
 		article.setArticleStatus(Integer.parseInt(request.getParameter("articleStatus")));
 
@@ -112,13 +122,20 @@ public class ArticleController {
 		//一级分类的id
 		int  parentCateId=Integer.parseInt(request.getParameter("articleParentCategoryId"));
 
-		//二级分类的id
-		int childCateId=Integer.parseInt(request.getParameter("articleChildCategoryId"));
-
-		//把上面的两个分类装到list中
 		List<Category> categoryList=new ArrayList<>(2);
-		categoryList.add(new Category(parentCateId));
-		categoryList.add(new Category(childCateId));
+		if(request.getParameter("articleChildCategoryId").equals("")){
+			//把上面的两个分类装到list中
+
+			categoryList.add(new Category(parentCateId));
+		}else {
+			//二级分类的id
+			int childCateId=Integer.parseInt(request.getParameter("articleChildCategoryId"));
+
+			//把上面的两个分类装到list中
+			categoryList.add(new Category(parentCateId));
+			categoryList.add(new Category(childCateId));
+		}
+
 
 		//标签列表
 
@@ -137,6 +154,25 @@ public class ArticleController {
 
 		//添加文章
 		articleService.addArticle(article);
+		//将文章中的图片加入数据库
+		List<String> img_list= RegexMatches.getTmgUrl(article.getArticleContent(),img_url);
+
+		ThreadPoolUtils.ThreadPool threadPool=ThreadPoolUtils.getInstance();
+		CountDownLatch countDownLatch=new CountDownLatch(img_list.size());
+		int articleId = article.getArticleId();
+		for (int i = 0; i < img_list.size(); i++) {
+			String img_url_temp = img_list.get(i);
+			int index = img_url_temp.lastIndexOf('/');
+			String url_path_temp=img_url_temp.substring(index+1);
+			log.info("图片地址："+img_list.get(i));
+			threadPool.execute(new InsertArticleImgRef(img_url_temp,countDownLatch,articleId,img_file+url_path_temp));
+		}
+		try {
+
+			countDownLatch.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		//将请求转发到查询所有文章
 		return "forward:/article";
@@ -156,6 +192,7 @@ public class ArticleController {
 
 		//文章内容
 		article.setArticleContent(request.getParameter("articleContent"));
+
 
 		//文章的状态
 		article.setArticleStatus(Integer.parseInt(request.getParameter("articleStatus")));
@@ -242,6 +279,42 @@ public class ArticleController {
 
 		//文章内容
 		article.setArticleContent(request.getParameter("articleContent"));
+//		log.info("修改文章内容："+request.getParameter("articleContent"));
+		List<String> img_list= RegexMatches.getTmgUrl(article.getArticleContent(),img_url);
+
+		int articleId = article.getArticleId();
+		List<String> img_url_old_list = imgService.selImgUrlByArticleId(articleId);
+//		log.info("旧图片列表："+img_url_old_list);
+		Map<String,Integer> map=new HashMap<>();
+		for(int i= 0;i<img_url_old_list.size();i++){
+			map.put(img_url_old_list.get(i),1);
+		}
+		for(int i= 0;i<img_list.size();i++){
+			if(map.containsKey(img_list.get(i))){
+				map.put(img_list.get(i),0);
+			}else{
+				map.put(img_list.get(i),2);
+			}
+		}
+
+
+
+		/**线程池插入新的图片**/
+
+		for(Map.Entry<String, Integer> entry : map.entrySet()){
+			String img_url_temp = entry.getKey();
+			int index = img_url_temp.lastIndexOf('/');
+			String url_path_temp=img_url_temp.substring(index+1);
+			if(entry.getValue().equals(1)){
+				log.info("删除旧的图片:"+img_url_temp);
+				InsertArticleImgRef.DeleteArticleImgRefF(img_url_temp,articleId,img_file+url_path_temp);
+
+			}
+			if(entry.getValue().equals(2)){
+
+			log.info("修改新加入图片地址："+img_url_temp);
+			InsertArticleImgRef.InsertArticleImgRefF(img_url_temp,articleId,img_file+url_path_temp);}
+		}
 
 		//文章的状态
 		article.setArticleStatus(Integer.parseInt(request.getParameter("articleStatus")));
@@ -293,7 +366,8 @@ public class ArticleController {
 
 		categoryList=categoryService.listCategory();
 
-		PageInfo<Article> pageInfo= articleService.getPageArticleList(pageIndex,pageSize);
+		PageInfo<Article> pageInfo= articleService.getPageArticleBlogList(pageIndex,pageSize);
+
 		List<Article> hot=articleService.getArticleByView();
 		m.put("hotList",hot);
 		List<Notice> notices=new ArrayList<Notice>();
@@ -349,7 +423,7 @@ public class ArticleController {
 	}
 	/**
 	 * 查找标签下文章
-	 * @param name
+	 * @param
 	 * @param m
 	 * @return
 	 */

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+				<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+				<mapper namespace="com.lhd.springboot_blog.mapper.ImgMapper">
+				<select id="selImgUrlByArticleId" parameterType="Integer" resultType="String">
+					select img_url from  article_img_ref where article_id =#{articleId}
+				</select>
+	<select id="selImgPathByArticleId" parameterType="Integer" resultType="String">
+		select img_path from  article_img_ref where article_id =#{id}
+	</select>
+	<delete id="delArticleImgRefByArticleId" >
+		delete from article_img_ref where article_id =#{id}
+	</delete>
+				</mapper>

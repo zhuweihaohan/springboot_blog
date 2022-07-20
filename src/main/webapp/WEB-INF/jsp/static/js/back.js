@@ -135,11 +135,12 @@ function checkUserName() {
     $.ajax({
         async: false,//同步，待请求完毕后再执行后面的代码
         type: "POST",
-        url: '/admin/user/checkUserName',
+        url: '/admin/checkUserName',
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         data: {"username": $("#userName").val(), "id": $("#userId").val()},
         dataType: "json",
         success: function (data) {
+            alert(data)
             //用户名存在
             if(data.code==1) {
                 $("#userNameTips").html(data.msg);
@@ -152,7 +153,7 @@ function checkUserName() {
             }
         },
         error: function () {
-            // alert("数据获取失败")
+             alert("数据获取失败")
         }
     })
     return result;

@@ -15,7 +15,7 @@ public class User {
 	private Date userRegisterTime;   //用户注册的时间
 	private Date userLastLoginTime; //最后登录的时间
 	private Integer userStatus; //用户的状态
-	private byte [] userPhoto;  //用户照片,存的是具体的照片数据
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -82,19 +82,14 @@ public class User {
 	public void setUserStatus(Integer userStatus) {
 		this.userStatus = userStatus;
 	}
-	public byte[] getUserPhoto() {
-		return userPhoto;
-	}
-	public void setUserPhoto(byte[] userPhoto) {
-		this.userPhoto = userPhoto;
-	}
+
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", userPass=" + userPass + ", userNickname="
 				+ userNickname + ", userEmail=" + userEmail + ", userUrl=" + userUrl + ", userAvatar=" + userAvatar
 				+ ", userLastLoginIp=" + userLastLoginIp + ", userRegisterTime=" + userRegisterTime
-				+ ", userLastLoginTime=" + userLastLoginTime + ", userStatus=" + userStatus + ", userPhoto="
-				+ Arrays.toString(userPhoto) + "]";
+				+ ", userLastLoginTime=" + userLastLoginTime + ", userStatus=" + userStatus + "]";
 	}
 
 }
