@@ -42,7 +42,7 @@ public class AdminController {
 	private NoticeService noticeService;
 	@Value("${img_file}")
 	private String img_file;
-	@Value(("${img_url}"))
+	@Value("${img_url}")
 	private String img_url;
 	@RequestMapping("/login")
 	public String login(String userName,String userPass,ModelMap m,HttpSession session) {

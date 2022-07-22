@@ -8,6 +8,26 @@
         <version>2.7.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <activatedProperties>local</activatedProperties>
+            </properties>
+            <activation>
+                <!-- 默认环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>pro</id>
+            <properties>
+                <activatedProperties>pro</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
     <groupId>com.lhd</groupId>
     <artifactId>springboot_blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -24,6 +44,12 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--邮件发送功能实现-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.googlecode.rapid-framework</groupId>
             <artifactId>rapid-core</artifactId>

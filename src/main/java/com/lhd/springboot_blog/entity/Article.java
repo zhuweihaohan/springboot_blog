@@ -179,7 +179,26 @@ public class Article {
 		public void setUser(User user) {
 			this.user = user;
 		}
-	
-	    
 
+	@Override
+	public String toString() {
+		return "Article{" +
+				"articleId=" + articleId +
+				", articleUserId=" + articleUserId +
+				", articleTitle='" + articleTitle + '\'' +
+				", articleViewCount=" + articleViewCount +
+				", articleCommentCount=" + articleCommentCount +
+				", articleLikeCount=" + articleLikeCount +
+				", articleCreateTime=" + articleCreateTime +
+				", articleUpdateTime=" + articleUpdateTime +
+				", articleIsComment=" + articleIsComment +
+				", articleStatus=" + articleStatus +
+				", articleOrder=" + articleOrder +
+				", articleContent='" + articleContent + '\'' +
+				", articleSummary='" + articleSummary + '\'' +
+				", user=" + user +
+				", tagList=" + tagList +
+				", categoryList=" + categoryList +
+				'}';
+	}
 }

@@ -53,7 +53,7 @@
 										</c:if>
 								    </a>
 								 </td>
-								<td> <fmt:formatDate value="${a.articleCreateTime }" pattern="yyyy/MM/dd hh:mm:ss"/>  </td>
+								<td> <fmt:formatDate value="${a.articleCreateTime }" pattern="yyyy-MM-dd HH:mm:ss"/>  </td>
 								<td><a href="article/edit/${a.articleId }"
 									class="layui-btn layui-btn-mini">编辑</a>
 <a href="article/deleteArticle/${a.articleId}" class="layui-btn layui-btn-danger layui-btn-mini" onclick="return confirmDelete()">删除</a>

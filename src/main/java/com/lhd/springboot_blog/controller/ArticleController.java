@@ -217,7 +217,7 @@ public class ArticleController {
 		File destFile =new File(img_file+newName+".jpg");
 
 		file.transferTo(destFile);
-
+		log.info("上传图片："+img_file+newName+".jpg");
 		String path=img_url+newName+".jpg";
 
 

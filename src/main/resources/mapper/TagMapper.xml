@@ -4,7 +4,7 @@
 					
 					<!-- 查询所有的标签列表 -->
 					<select id="listTag" resultType="com.lhd.springboot_blog.entity.Tag">
-						select * from Tag 
+						select * from tag
 					</select>
 					<!-- 根据名字查询标签列表 -->
 					<select id="getTagByName" resultType="com.lhd.springboot_blog.entity.Tag">
