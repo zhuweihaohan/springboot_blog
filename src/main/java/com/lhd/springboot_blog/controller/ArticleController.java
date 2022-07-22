@@ -4,8 +4,7 @@ import cn.hutool.http.HtmlUtil;
 import com.lhd.springboot_blog.entity.*;
 import com.github.pagehelper.PageInfo;
 import com.lhd.springboot_blog.service.*;
-import com.lhd.springboot_blog.service.impl.ImgService;
-import com.lhd.springboot_blog.utils.DeleteImgFile;
+import com.lhd.springboot_blog.service.ImgService;
 import com.lhd.springboot_blog.utils.InsertArticleImgRef;
 import com.lhd.springboot_blog.utils.RegexMatches;
 import com.lhd.springboot_blog.utils.ThreadPoolUtils;
@@ -13,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @Controller @RequestMapping("/article")
 @Slf4j

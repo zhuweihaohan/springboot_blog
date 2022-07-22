@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+				<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+				<mapper namespace="com.lhd.springboot_blog.mapper.VisitMapper">
+<insert id="addRecord" >
+	insert into visit_info (visit_ip,visit_time,visit_url) values (#{visitIp},now(),#{url});
+</insert>
+	<select id="getNewIp" resultType="Integer">
+		SELECT count(*) FROM visit_info WHERE  visit_ip = #{visitIp}
+	</select>
+				</mapper>

@@ -1,4 +1,4 @@
-package com.lhd.springboot_blog.service.impl;
+package com.lhd.springboot_blog.service;
 
 import java.util.List;
 
