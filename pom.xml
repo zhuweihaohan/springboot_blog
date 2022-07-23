@@ -44,6 +44,14 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- ip定位地址 -->
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-ip2region</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+
+
         <!--邮件发送功能实现-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,7 +77,7 @@
         <dependency>
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
-        <version>4.1.13</version>
+        <version>5.4.3</version>
         </dependency>
         <!-- 分页支持 -->
         <dependency>

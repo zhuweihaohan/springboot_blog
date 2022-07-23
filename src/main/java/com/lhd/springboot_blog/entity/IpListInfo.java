@@ -5,15 +5,14 @@ import lombok.Data;
 /**
  * @Author lhd
  * @Description //TODO
- * @Date 2022/7/22 15:22
+ * @Date 2022/7/23 0:00
  * @company bonc
  * @project springboot_blog
  */
 @Data
-public class VisitInfo {
-    private int id;
-    private String visitIp;
-    private String visitTime;
-    private String visitUrl;
+public class IpListInfo {
+    private String ip;
+    private String count;
+    private String lastVistTime;
     private String site;
 }

@@ -2,9 +2,18 @@
 				<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 				<mapper namespace="com.lhd.springboot_blog.mapper.VisitMapper">
 <insert id="addRecord" >
-	insert into visit_info (visit_ip,visit_time,visit_url) values (#{visitIp},now(),#{url});
+	insert into visit_info (visit_ip,visit_time,visit_url,site) values (#{visitIp},now(),#{url},#{site});
 </insert>
 	<select id="getNewIp" resultType="Integer">
 		SELECT count(*) FROM visit_info WHERE  visit_ip = #{visitIp}
+	</select>
+	<select id="findAll" resultType="com.lhd.springboot_blog.entity.VisitInfo">
+		select * from visit_info
+	</select>
+	<select id="findIpList" resultType="com.lhd.springboot_blog.entity.IpListInfo">
+		SELECT visit_ip as ip,count(*) as count FROM visit_info GROUP BY visit_ip ORDER BY count desc
+	</select>
+	<select id="getLastVisitTime" resultType="String">
+		SELECT visit_time FROM visit_info WHERE visit_ip=#{ip} ORDER BY visit_time desc LIMIT 1
 	</select>
 				</mapper>

@@ -2,16 +2,15 @@ package com.lhd.springboot_blog.controller;
 
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
+import com.github.pagehelper.PageInfo;
 import com.lhd.springboot_blog.entity.*;
 import com.lhd.springboot_blog.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -44,6 +43,8 @@ public class AdminController {
 	private String img_file;
 	@Value("${img_url}")
 	private String img_url;
+	@Autowired
+	private VisitService visitService;
 	@RequestMapping("/login")
 	public String login(String userName,String userPass,ModelMap m,HttpSession session) {
 		User user=userService.login(userName, userPass);
@@ -125,6 +126,30 @@ public class AdminController {
 		m.put("userList",userList);
 		return "User/user-list";
 	}
+	@RequestMapping(value="/visit_list")
+	public String visitList(@RequestParam(required = false,defaultValue="1")  Integer pageIndex,
+							@RequestParam(required = false,defaultValue="30") Integer pageSize,ModelMap m) {
+		PageInfo<VisitInfo> pageInfo= visitService.getPageVisitList(pageIndex,pageSize);
+
+		m.put("pageInfo", pageInfo);
+
+		m.put("pageUrlPrefix","admin/visit_list?pageIndex");
+
+		return "Visit/visit-list";
+	}
+
+	@RequestMapping(value="/ip_list")
+	public String ipList(@RequestParam(required = false,defaultValue="1")  Integer pageIndex,
+							@RequestParam(required = false,defaultValue="20") Integer pageSize,ModelMap m) {
+		PageInfo<IpListInfo> pageInfo= visitService.getPageIpList(pageIndex,pageSize);
+
+		m.put("pageInfo", pageInfo);
+
+		m.put("pageUrlPrefix","admin/ip_list?pageIndex");
+
+		return "Visit/ip-list";
+	}
+
 	@RequestMapping(value = "/checkUserName",method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject checkUserName(HttpServletRequest request){

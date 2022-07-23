@@ -18,9 +18,11 @@ import java.util.Date;
 public class SendNewIpMail implements Runnable{
     private JavaMailSender javaMailSender;
     private String visitIp;
-    public SendNewIpMail(JavaMailSender javaMailSender,String visitIp){
+    private String site;
+    public SendNewIpMail(JavaMailSender javaMailSender,String visitIp,String site){
         this.javaMailSender=javaMailSender;
         this.visitIp = visitIp;
+        this.site = site;
     }
     @Override
     public void run() {
@@ -30,7 +32,7 @@ public class SendNewIpMail implements Runnable{
         message.setFrom("lhd3f8@163.com");
         message.setTo("lhd3f8@163.com");
         message.setSentDate(new Date());
-        message.setText("注意，有一个新的IP访问您的网站："+visitIp);
+        message.setText("注意，有一个新的IP访问您的网站："+visitIp+",其IP属地为："+site);
         javaMailSender.send(message);
 
     }

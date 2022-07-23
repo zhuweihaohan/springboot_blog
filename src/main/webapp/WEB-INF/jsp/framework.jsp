@@ -89,6 +89,15 @@
 												<a href="admin/tag-list">全部标签</a>
 											</dd>
 										</dl></li>
+									 <li class="layui-nav-item"><a href="javascript:;">网站概览</a>
+										<dl class="layui-nav-child">
+											<dd>
+												<a href="admin/visit_list">访问记录</a>
+											</dd>
+											<dd>
+												<a href="admin/ip_list">访问IP</a>
+											</dd>
+										</dl></li>
 									<!-- <li class="layui-nav-item"><a href="javascript:;">页面</a>
 										<dl class="layui-nav-child">
 											<dd>

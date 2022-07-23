@@ -3,6 +3,7 @@ package com.lhd.springboot_blog;
 import com.lhd.springboot_blog.entity.Tag;
 import com.lhd.springboot_blog.service.ArticleService;
 import com.lhd.springboot_blog.service.TagService;
+import net.dreamlu.mica.ip2region.core.Ip2regionSearcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,6 +58,11 @@ private ArticleService articleService;
         helper.addAttachment("test.jpg",new File("C:\\work\\code\\myCode\\springboot_blog\\src\\main\\resources\\static\\img\\logo.png"));
 //        javaMailSender.send(mimeMessage);
     }
-
+@Autowired
+    private Ip2regionSearcher regionSearcher;
+    @Test
+    public void getIPInfo(){
+        System.out.println(regionSearcher.getAddress("39.155.134.150"));
+    }
 
 }
